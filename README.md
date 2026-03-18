@@ -7,7 +7,7 @@ Project: Etch-A-Sketch
 A browser-based version of the classic Etch-A-Sketch toy. This project focuses on DOM manipulation, event listeners, and using CSS Flexbox to create dynamic layouts.
 
 Performance Optimization
-[codesignal](https://codesignal.com/learn/courses/mastering-the-dom-api/lessons/high-speed-web-interfaces-efficient-dom-manipulation-and-javascript-optimization-techniques)
+From[codesignal](https://codesignal.com/learn/courses/mastering-the-dom-api/lessons/high-speed-web-interfaces-efficient-dom-manipulation-and-javascript-optimization-techniques)
 
 To keep the application smooth at 10,000 cells (100x100), I implemented:
 
