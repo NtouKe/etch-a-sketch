@@ -41,30 +41,45 @@ clearBoard.addEventListener("click", () => {
   container.querySelectorAll(".cell").forEach((c) => (c.style.backgroundColor = "rgb(255, 255, 255)"));
 });
 
+container.addEventListener("mouseover", (e) => {
+  if (!isMouseDown) return;
+  if (e.target.classList.contains("cell")) {
+    paintCell(e.target);
+  }
+});
+
+container.addEventListener("mousedown", (e) => {
+  if (e.target.classList.contains("cell")) {
+    paintCell(e.target);
+  }
+});
+
 function createCells(cells) {
   container.innerHTML = "";
   container.classList.add("show-outlines");
+  const fragment = document.createDocumentFragment();
   const cellSize = 100 / cells;
   for (let i = 0; i < cells ** 2; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
-    cell.style.backgroundColor = "rgb(255, 255, 255)";
-    cell.style.width = `${cellSize}%`;
-    cell.style.height = `${cellSize}%`;
-    cell.addEventListener("mouseover", () => isMouseDown && paintCell(cell));
-    cell.addEventListener("mousedown", () => paintCell(cell));
-    container.appendChild(cell);
+    cell.style.cssText = `
+      background-color: rgb(255,255,255);
+      width: ${cellSize}%;
+      height: ${cellSize}%;
+    `;
+    fragment.appendChild(cell);
   }
+  container.appendChild(fragment);
+}
+
+function getRandomColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgb(${r}, ${g}, ${b})`;
 }
 
 function paintCell(cell) {
-  function getRandomColor() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-
   let color = colorChoice.value;
 
   switch (paintMode) {
