@@ -1,5 +1,6 @@
 const container = document.querySelector("#container");
 const cellNumberInput = document.querySelector("#cell-number-input");
+const toggleBorder = document.querySelector("#toggle-border");
 
 let isMouseDown = false;
 container.addEventListener("mousedown", () => {
@@ -22,12 +23,20 @@ cellNumberInput.addEventListener("change", (e) => {
   createCells(val);
 });
 
+toggleBorder.addEventListener("click", () => {
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach((cell) => {
+    cell.classList.toggle("border");
+  });
+});
+
 function createCells(cells) {
   container.innerHTML = "";
   const cellSize = 100 / cells;
   for (let i = 0; i < cells ** 2; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
+    cell.classList.add("border");
     cell.style.width = `${cellSize}%`;
     cell.style.height = `${cellSize}%`;
     cell.addEventListener("mouseover", () => isMouseDown && paintCell(cell, "black"));

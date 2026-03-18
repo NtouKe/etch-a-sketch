@@ -12,13 +12,33 @@
   text-align: center;
 }
 
-input {
-  font-size: inherit;
-}
-
 body {
   font-family:
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  font-family: inherit;
+  font-size: 2.5em;
+  width: 70px;
+  height: 70px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: rgb(230, 230, 230);
+  border: 2px solid rgb(212, 212, 212);
+}
+
+button:active {
+  background-color: rgb(220, 220, 220);
+  border: 2px solid rgb(202, 202, 202);
 }
 
 #title {
@@ -56,7 +76,10 @@ body {
 }
 
 .cell {
-  outline: 1px solid #eee;
   user-select: none; /* Prevents highlighting text */
   -webkit-user-drag: none; /* Prevents the "ghosting" drag effect */
+}
+
+.border {
+  outline: 1px solid #eee;
 }
