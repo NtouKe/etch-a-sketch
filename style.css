@@ -22,7 +22,8 @@ input {
   font-size: inherit;
 }
 
-button {
+button,
+input[type="color"] {
   font-family: inherit;
   font-size: 2.5em;
   width: 70px;
@@ -33,12 +34,16 @@ button {
 
 button:hover {
   background-color: rgb(230, 230, 230);
-  border: 2px solid rgb(212, 212, 212);
+  /* border: 2px solid rgb(212, 212, 212); */
 }
 
 button:active {
   background-color: rgb(220, 220, 220);
   border: 2px solid rgb(202, 202, 202);
+}
+
+.btn-active {
+  border: 2px solid black;
 }
 
 #title {
@@ -80,6 +85,6 @@ button:active {
   -webkit-user-drag: none; /* Prevents the "ghosting" drag effect */
 }
 
-.border {
+#container.show-outlines .cell {
   outline: 1px solid #eee;
 }

@@ -1,8 +1,11 @@
 const container = document.querySelector("#container");
 const cellNumberInput = document.querySelector("#cell-number-input");
+const colorChoice = document.querySelector("#color-choice");
 const toggleBorder = document.querySelector("#toggle-border");
-
+const toggleActiveBtn = document.querySelectorAll(".toggle-btn");
 let isMouseDown = false;
+let paintMode;
+
 container.addEventListener("mousedown", () => {
   isMouseDown = true;
   //   console.log("mouse down");
@@ -23,30 +26,48 @@ cellNumberInput.addEventListener("change", (e) => {
   createCells(val);
 });
 
-toggleBorder.addEventListener("click", () => {
-  const cells = document.querySelectorAll(".cell");
-  cells.forEach((cell) => {
-    cell.classList.toggle("border");
+toggleActiveBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelector(".btn-active")?.classList.remove("btn-active");
+    btn.classList.add("btn-active");
+    paintMode = btn.dataset.color;
   });
+});
+
+toggleBorder.addEventListener("click", () => {
+  container.classList.toggle("show-outlines");
 });
 
 function createCells(cells) {
   container.innerHTML = "";
   const cellSize = 100 / cells;
   for (let i = 0; i < cells ** 2; i++) {
+    container.classList.add("show-outlines");
     const cell = document.createElement("div");
     cell.classList.add("cell");
-    cell.classList.add("border");
     cell.style.width = `${cellSize}%`;
     cell.style.height = `${cellSize}%`;
-    cell.addEventListener("mouseover", () => isMouseDown && paintCell(cell, "black"));
-    cell.addEventListener("mousedown", () => paintCell(cell, "black"));
+    cell.addEventListener("mouseover", () => isMouseDown && paintCell(cell));
+    cell.addEventListener("mousedown", () => paintCell(cell));
     container.appendChild(cell);
   }
 }
 
-function paintCell(cell, color) {
-  cell.style.backgroundColor = color;
+function paintCell(cell) {
+  function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
+  let color = colorChoice.value;
+
+  if (paintMode === "random") {
+    cell.style.backgroundColor = getRandomColor();
+  } else {
+    cell.style.backgroundColor = color;
+  }
 }
 
 createCells(16);
